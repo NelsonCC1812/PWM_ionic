@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore'
 import { Injectable } from "@angular/core";
-import { FirestoreService } from '../services/dbServices/FirebaseServices/firestore.service';
+import { FirestoreService } from './dbServices/FirebaseServices/firestore.service';
 import { ContactData } from '../templates/policy/ContactData.schema';
 import { LawData } from '../templates/policy/LawData.schema';
 
@@ -12,25 +12,25 @@ export default class FirebasePolicyService {
 
     constructor(private fss: FirestoreService) { }
 
-    async loadTelephoneData(): Promise<ContactData>{
+    async loadTelephoneData(): Promise<ContactData> {
         // Accedo a la base de datos
         const contactSnapshot = await getDoc(doc(this.fss.db, "Policy", "Contacto"));
         const telephoneData: ContactData = {
             data: contactSnapshot.get('telephoneData'),
             icon: contactSnapshot.get('telephoneIcon'),
             title: contactSnapshot.get('telephoneTitle')
-        }        
+        }
 
         // compruebo su existencia
-        if(contactSnapshot.exists()){
+        if (contactSnapshot.exists()) {
             console.log("El documento existe");
-        } else{
+        } else {
             console.log("El documento no existe");
         }
         return telephoneData;
     }
 
-    async loadAddressData(): Promise<ContactData>{
+    async loadAddressData(): Promise<ContactData> {
         // Accedo a la base de datos
         const contactSnapshot = await getDoc(doc(this.fss.db, "Policy", "Contacto"));
         const addressData: ContactData = {
@@ -40,15 +40,15 @@ export default class FirebasePolicyService {
         }
 
         // compruebo su existencia
-        if(contactSnapshot.exists()){
+        if (contactSnapshot.exists()) {
             console.log("El documento existe");
-        } else{
+        } else {
             console.log("El documento no existe");
         }
         return addressData;
     }
 
-    async loadEmailData(): Promise<ContactData>{
+    async loadEmailData(): Promise<ContactData> {
         // Accedo a la base de datos
         const contactSnapshot = await getDoc(doc(this.fss.db, "Policy", "Contacto"));
         const emailData: ContactData = {
@@ -58,55 +58,55 @@ export default class FirebasePolicyService {
         }
 
         // compruebo su existencia
-        if(contactSnapshot.exists()){
+        if (contactSnapshot.exists()) {
             console.log("El documento existe");
-        } else{
+        } else {
             console.log("El documento no existe");
         }
         return emailData;
     }
 
-    async loadCopyright(): Promise<string>{
+    async loadCopyright(): Promise<string> {
         const avisoLegalSnapshot = await getDoc(doc(this.fss.db, "Policy", "AvisoLegal"));
-        if(avisoLegalSnapshot.exists()){
+        if (avisoLegalSnapshot.exists()) {
             console.log("El documento de aviso legal existe");
-        } else{
+        } else {
             console.log("El documento de aviso legal no existe");
-        } 
-        const copyright = avisoLegalSnapshot.get('copyright');        
+        }
+        const copyright = avisoLegalSnapshot.get('copyright');
         return copyright;
     }
 
-    async loadAvisoLegal(): Promise<LawData[]>{
+    async loadAvisoLegal(): Promise<LawData[]> {
         const avisoLegalSnapshot = await getDoc(doc(this.fss.db, "Policy", "AvisoLegal"));
-        if(avisoLegalSnapshot.exists()){
+        if (avisoLegalSnapshot.exists()) {
             console.log("El documento de aviso legal existe");
-        } else{
+        } else {
             console.log("El documento de aviso legal no existe");
-        } 
-        const arrayLeyes = avisoLegalSnapshot.get('data');        
+        }
+        const arrayLeyes = avisoLegalSnapshot.get('data');
         return arrayLeyes;
-    }    
+    }
 
     async loadPoliticaDeCookies(): Promise<LawData[]> {
         const politicaDeCookiesSnapshot = await getDoc(doc(this.fss.db, "Policy", "PoliticaDeCookies"));
-        if(politicaDeCookiesSnapshot.exists()){
+        if (politicaDeCookiesSnapshot.exists()) {
             console.log("El documento de Política de Cookies existe");
-        } else{
+        } else {
             console.log("El documento de Política de Cookies no existe");
-        } 
-        const arrayLeyes = politicaDeCookiesSnapshot.get('data');        
+        }
+        const arrayLeyes = politicaDeCookiesSnapshot.get('data');
         return arrayLeyes;
     }
 
     async loadPoliticaDePrivacidad(): Promise<LawData[]> {
         const politicaDePrivacidadSnapshot = await getDoc(doc(this.fss.db, "Policy", "PoliticaDePrivacidad"));
-        if(politicaDePrivacidadSnapshot.exists()){
+        if (politicaDePrivacidadSnapshot.exists()) {
             console.log("El documento de Política de Privacidad existe");
-        } else{
+        } else {
             console.log("El documento de Política de Privacidad no existe");
-        } 
-        const arrayLeyes = politicaDePrivacidadSnapshot.get('data');        
+        }
+        const arrayLeyes = politicaDePrivacidadSnapshot.get('data');
         return arrayLeyes;
     }
 
