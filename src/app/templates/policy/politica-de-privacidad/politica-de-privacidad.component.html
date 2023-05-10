@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de privacidad</title>    
+</head>
+
+<body>
+    <main>
+        <div class="generic-container">
+            <h1 class="title">Política de Privacidad</h1>
+            <ul *ngFor = "let ley of leyes" class="leyes">
+                <h2>{{ley.title}}</h2>
+                <p>{{ley.value}}</p>
+            </ul>
+        </div>
+    </main>    
+</body>
+
+</html>

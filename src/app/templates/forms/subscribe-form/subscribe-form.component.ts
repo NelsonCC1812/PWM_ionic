@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsValidationService } from '../../services/forms-validation.service';
+import { FormsValidationService } from '../services/forms-validation.service';
 import { UserServices } from 'src/app/services/dbServices/Users/user-services.service';
 import { Router } from '@angular/router';
 
